@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head%}
+  <title>Log in</title>
+{% endblock %}
+
+{% block body %}
+<!-- Container -->
+<div id="container">
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+          <h1 id="site-name"><a href="/collect/login/">Login</a></h1>
+        </div>
+    </div>
+    <!-- END Header -->
+    <!-- Content -->
+    <div id="content" class="colM">
+      <div id="content-main">
+        <form action="{% url 'login' %}" method="post">
+          {%csrf_token%}
+          <div class="form-row">
+            <h2>College ID : </h2>
+            {{ form.username }}
+          </div>
+          <div class="form-row">
+            <h2>Password : </h2>
+            {{ form.password }}
+          </div>
+          <div class="submit-row">
+            <label>&nbsp;</label><input type="submit" value="Log in">
+          </div>
+        </form>
+      </div>
+        <br class="clear">
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+{% endblock %}
