@@ -7,4 +7,5 @@ urlpatterns = [
     path('login/',LoginView.as_view(template_name='collect/login.html'), name="login"),
     path('logout/',LogoutView.as_view(template_name='collect/logout.html'), name="logout"),
     path('profile/',views.view_profile,name="view_profile"),
+    path('certificate/',views.certificate,name="certificate"),
 ]

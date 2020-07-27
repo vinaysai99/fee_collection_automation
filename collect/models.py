@@ -12,10 +12,19 @@ class UserProfile(models.Model):
     studentGender=models.CharField(max_length=20,choices=gender)
     date_birth=models.DateField(null=True)
     studentClass=models.CharField(max_length=20,choices=classType)
-    Due=models.FloatField(default=0)
+    academicFee=models.FloatField(default=0)
+    hostelFee=models.FloatField(default=0)
+    otherFee=models.FloatField(default=0)
     def __str__(self):
         return self.user.username+" "+self.studentClass
-
+    def total(self):
+        return '{}'.format((self.academicFee)+(self.hostelFee)+(self.otherFee))
+    def academicDue(self):
+        return "Yes" if (self.academicFee)>0 else "No"
+    def hostelDue(self):
+        return "Yes" if (self.hostelFee)>0 else "No"
+    def otherDue(self):
+        return "Yes" if (self.otherFee)>0 else "No"
 def create_profile(sender, **kwargs):
     if kwargs['created']:
         user_profile = UserProfile.objects.create(user=kwargs['instance'])
